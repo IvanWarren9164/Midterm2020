@@ -76,7 +76,7 @@ namespace Midterm2020
                 }
             }
         }
-        public static void CreateLibrary() 
+        public static void CreateOurLibrary() 
         {
             // depends on how our streamwriter / reader works. We want to create new books based on this txt file
         }
