@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mike\\Desktop\\Coding\\GrandCircus\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj": {}
+    "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mike\\Desktop\\Coding\\GrandCircus\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj": {
+    "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mike\\Desktop\\Coding\\GrandCircus\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
+        "projectUniqueName": "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
         "projectName": "Midterm2020",
-        "projectPath": "C:\\Users\\Mike\\Desktop\\Coding\\GrandCircus\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
-        "packagesPath": "C:\\Users\\Mike\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mike\\Desktop\\Coding\\GrandCircus\\Midterm2020\\Midterm2020\\Midterm2020\\obj\\",
+        "projectPath": "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
+        "packagesPath": "C:\\Users\\darsh\\.nuget\\packages\\",
+        "outputPath": "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mike\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\darsh\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

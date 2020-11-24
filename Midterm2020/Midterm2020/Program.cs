@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Midterm2020
 {
@@ -8,6 +9,8 @@ namespace Midterm2020
     {
         static void Main(string[] args)
         {
+            string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
+
             var testListOfBooks = new List<Book>();
             testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
             testListOfBooks.Add(new Book("Sisterhood of the traveling pants", "Joe Schmo"));
@@ -19,7 +22,29 @@ namespace Midterm2020
             testListOfBooks.Add(new Book("Beloved", "Toni Morrison"));
             testListOfBooks.Add(new Book("Deloved", "Toni Morrison"));
 
+
+            
             Library.DisplayAllBooks(testListOfBooks);
+
+            var listOfTitle = new List<string>(); 
+
+            if (!File.Exists(path))
+            {
+                for (int i = 0; i < testListOfBooks.Count; i++)
+                {
+                    // Create a file to write to.
+                    listOfTitle.Add(testListOfBooks[i].Title);
+                    listOfTitle.Add(testListOfBooks[i].Author);
+                    listOfTitle.Add(testListOfBooks[i].Status);
+
+                }
+
+
+                File.WriteAllLines(path, listOfTitle);
+            }
+
+            Book.CreateLibrary();
+
         }
     }
 
@@ -78,10 +103,19 @@ namespace Midterm2020
         }
         public static void CreateLibrary() 
         {
+
+            
+            string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
+
+            string[] readText = File.ReadAllLines(path);
+            foreach (string s in readText)
+            {
+                Console.WriteLine(s);
+            }
             // depends on how our streamwriter / reader works. We want to create new books based on this txt file
         }
     }
-    public class Book
+    public class Book : Library
     {
         public Book(string title, string author)
         {
