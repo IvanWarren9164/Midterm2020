@@ -9,7 +9,8 @@ namespace Midterm2020
     {
         static void Main(string[] args)
         {
-            string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
+           // string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
+            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");
 
             var testListOfBooks = new List<Book>();
             testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
@@ -35,16 +36,15 @@ namespace Midterm2020
                     // Create a file to write to.
                     listOfTitle.Add(testListOfBooks[i].Title);
                     listOfTitle.Add(testListOfBooks[i].Author);
-                    listOfTitle.Add(testListOfBooks[i].Status);
+                   
 
                 }
 
 
-                File.WriteAllLines(path, listOfTitle);
+               
             }
 
             Book.CreateLibrary();
-
         }
     }
 
@@ -104,8 +104,8 @@ namespace Midterm2020
         public static void CreateLibrary() 
         {
 
-            
-            string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
+
+            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");  // Create a path variable.
 
             string[] readText = File.ReadAllLines(path);
             foreach (string s in readText)
