@@ -9,17 +9,19 @@ namespace Midterm2020
         static void Main(string[] args)
         {
             var testListOfBooks = new List<Book>();
-            testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
+            testListOfBooks.Add(new Book("Visible Man", "Eli Ralphson", DateTime.Now, Status.CheckedOut));
+            /*testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
             testListOfBooks.Add(new Book("Sisterhood of the traveling pants", "Joe Schmo"));
             testListOfBooks.Add(new Book("To Kill A Mockingbird", "Harper Lee"));
             testListOfBooks.Add(new Book("The Great Gatsby", "F Scott Fitzgerald"));
             testListOfBooks.Add(new Book("A Passage to India", "EM Foster"));
             testListOfBooks.Add(new Book("Invisible Man", "Ralph Ellison"));
-            testListOfBooks.Add(new Book("Visible Man", "Eli Ralphson", DateTime.Now));
             testListOfBooks.Add(new Book("Beloved", "Toni Morrison"));
-            testListOfBooks.Add(new Book("Deloved", "Toni Morrison"));
+            testListOfBooks.Add(new Book("Deloved", "Toni Morrison"));*/
 
             Library.DisplayAllBooks(testListOfBooks);
+
+            Library.CheckOutBook(testListOfBooks, testListOfBooks[0]);
         }
     }
 
@@ -69,10 +71,15 @@ namespace Midterm2020
         {
             foreach (Book book in listOfBooks)
             {
-                if (book.Title.Equals(bookToBeCheckedOut.Title, StringComparison.OrdinalIgnoreCase))
+                if (book.Title.Equals(bookToBeCheckedOut.Title, StringComparison.OrdinalIgnoreCase) && book.Status == Status.OnShelf)
                 {
                     book.Status = Status.CheckedOut;
                     book.DueDate = DateTime.Now.AddDays(14);
+                    Console.WriteLine("You have checked out: " + book.Title + "\nIt is due: " + DateTime.Now.AddDays(14));
+                }
+                else
+                {
+                    Console.WriteLine(book.Title + " is already checked out, please select a different book \n");
                 }
             }
         }
@@ -83,18 +90,18 @@ namespace Midterm2020
     }
     public class Book
     {
-        public Book(string title, string author)
+        /*public Book(string title, string author)
         {
             Title = title;
             Author = author;
             Status = Status.OnShelf;
             DueDate = DateTime.MinValue;
-        }
-        public Book(string title, string author, DateTime dueDate)
+        }*/
+        public Book(string title, string author, DateTime dueDate, Status status)
         {
             Title = title;
             Author = author;
-            Status = Status.CheckedOut;
+            Status = status;
             DueDate = dueDate;
         }
         public string Title { get; set; }
