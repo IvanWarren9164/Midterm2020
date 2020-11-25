@@ -20,10 +20,33 @@ namespace Midterm2020
             testListOfBooks.Add(new Book("Deloved", "Toni Morrison"));
 
             Library.DisplayAllBooks(testListOfBooks);
-        }
-    }
 
-    public enum Status 
+            string mySearchString = Console.ReadLine();
+
+            SearchForBook(testListOfBooks, mySearchString);
+        }
+
+        private static void SearchForBook(List<Book> testListOfBooks, string mySearchString)
+        {
+            Console.WriteLine("Do you want to search by name or author?");
+
+            foreach (Book currentBook in testListOfBooks)
+            {
+                if (mySearchString == "name")
+                {
+                    Console.WriteLine(currentBook.Title);
+                }
+                else if (mySearchString == "author")
+                {
+                    Console.WriteLine(currentBook.Title);
+
+                }
+
+
+            }
+        }
+
+        public enum Status 
     {
         OnShelf = 0,
         CheckedOut = 1
@@ -41,8 +64,19 @@ namespace Midterm2020
                 Console.WriteLine("\n\n");
             }
         }
+
+
+
+
+
         public static void DynamicDueDate(Book book)
         {
+
+           
+
+
+
+
             if (book.Status == Status.CheckedOut)
             {
                 Console.WriteLine("Status: Checked Out");
@@ -74,6 +108,8 @@ namespace Midterm2020
                     book.Status = Status.CheckedOut;
                     book.DueDate = DateTime.Now.AddDays(14);
                 }
+
+              
             }
         }
         public static void CreateLibrary() 
@@ -81,6 +117,9 @@ namespace Midterm2020
             // depends on how our streamwriter / reader works. We want to create new books based on this txt file
         }
     }
+
+
+
     public class Book
     {
         public Book(string title, string author)
@@ -106,4 +145,6 @@ namespace Midterm2020
 
 
     }
+
+
 }
