@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Midterm2020
 {
@@ -8,6 +9,9 @@ namespace Midterm2020
     {
         static void Main(string[] args)
         {
+            // string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
+            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");
+
             var testListOfBooks = new List<Book>();
             testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
             testListOfBooks.Add(new Book("Sisterhood of the traveling pants", "Joe Schmo"));
@@ -19,14 +23,40 @@ namespace Midterm2020
             testListOfBooks.Add(new Book("Beloved", "Toni Morrison"));
             testListOfBooks.Add(new Book("Deloved", "Toni Morrison"));
 
+
+
             Library.DisplayAllBooks(testListOfBooks);
 
-            string mySearchString = Console.ReadLine();
+            var listOfTitle = new List<string>();
 
-            SearchForBook(testListOfBooks, mySearchString);
+            if (!File.Exists(path))
+            {
+                for (int i = 0; i < testListOfBooks.Count; i++)
+                {
+                    // Create a file to write to.
+                    listOfTitle.Add(testListOfBooks[i].Title);
+                    listOfTitle.Add(testListOfBooks[i].Author);
+
+
+                }
+
+
+
+            }
+
+            Book.CreateLibrary();
         }
+    }
 
-        private static void SearchForBook(List<Book> testListOfBooks, string mySearchString)
+    public enum Status
+    {
+        OnShelf = 0,
+        CheckedOut = 1
+    }
+
+    public abstract class Library
+    {
+        public static void DisplayAllBooks(List<Book> listOfBooks)
         {
             Console.WriteLine("Do you want to search by name or author?");
 
@@ -71,12 +101,6 @@ namespace Midterm2020
 
             public static void DynamicDueDate(Book book)
             {
-
-
-
-
-
-
                 if (book.Status == Status.CheckedOut)
                 {
                     Console.WriteLine("Status: Checked Out");
@@ -109,7 +133,6 @@ namespace Midterm2020
                         book.DueDate = DateTime.Now.AddDays(14);
                     }
 
-
                 }
             }
             public static void CreateLibrary()
@@ -117,9 +140,6 @@ namespace Midterm2020
                 // depends on how our streamwriter / reader works. We want to create new books based on this txt file
             }
         }
-
-
-
         public class Book
         {
             public Book(string title, string author)
@@ -140,11 +160,19 @@ namespace Midterm2020
             public string Author { get; set; }
             public Status Status { get; set; }
             public DateTime DueDate { get; set; }
+          
+          
+            public static void CreateLibrary()
+            {
+            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");  // Create a path variable.
 
-
-
-
+            string[] readText = File.ReadAllLines(path);
+            foreach (string s in readText)
+            {
+                Console.WriteLine(s);
+            }
+            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
+            }
         }
-
-
     }
+}
