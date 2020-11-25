@@ -11,3 +11,16 @@ C:\Users\Mike\Desktop\Coding\GrandCircus\Midterm2020\Midterm2020\Midterm2020\bin
 C:\Users\Mike\Desktop\Coding\GrandCircus\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.dll
 C:\Users\Mike\Desktop\Coding\GrandCircus\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.pdb
 C:\Users\Mike\Desktop\Coding\GrandCircus\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.genruntimeconfig.cache
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.csprojAssemblyReference.cache
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.AssemblyInfoInputs.cache
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.AssemblyInfo.cs
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.csproj.CoreCompileInputs.cache
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.dll
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.pdb
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.exe
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.deps.json
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.runtimeconfig.json
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.runtimeconfig.dev.json
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.dll
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.pdb
+C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.genruntimeconfig.cache
