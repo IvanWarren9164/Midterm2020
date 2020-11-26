@@ -9,8 +9,7 @@ namespace Midterm2020
     {
         static void Main(string[] args)
         {
-            // string path = @"D:\Midterm2020\Midterm2020\MyText.txt";   // Create a path variable.
-            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");
+    
 
             var testListOfBooks = new List<Book>();
             testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
@@ -29,7 +28,7 @@ namespace Midterm2020
 
             var listOfTitle = new List<string>();
 
-            if (!File.Exists(path))
+            if (!File.Exists(Global.path))
             {
                 for (int i = 0; i < testListOfBooks.Count; i++)
                 {
@@ -52,6 +51,13 @@ namespace Midterm2020
     {
         OnShelf = 0,
         CheckedOut = 1
+    }
+
+
+    static class Global // Create a path variable.
+    {
+        public static string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\Demo.txt");
+       
     }
 
     public abstract class Library
@@ -136,9 +142,8 @@ namespace Midterm2020
 
         public static void CreateLibrary()
         {
-            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");  // Create a path variable.
-
-            string[] readText = File.ReadAllLines(path);
+            
+            string[] readText = File.ReadAllLines(Global.path);
             foreach (string s in readText)
             {
                 Console.WriteLine(s);
