@@ -8,25 +8,20 @@
     ".NETCoreApp,Version=v3.1": []
   },
   "packageFolders": {
-    "C:\\Users\\broly\\.nuget\\packages\\": {},
-    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
+    "C:\\Users\\darsh\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\broly\\Documents\\School\\Grand Circus\\Midterm\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
+      "projectUniqueName": "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
       "projectName": "Midterm2020",
-      "projectPath": "C:\\Users\\broly\\Documents\\School\\Grand Circus\\Midterm\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
-      "packagesPath": "C:\\Users\\broly\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\broly\\Documents\\School\\Grand Circus\\Midterm\\Midterm2020\\Midterm2020\\obj\\",
+      "projectPath": "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020.csproj",
+      "packagesPath": "C:\\Users\\darsh\\.nuget\\packages\\",
+      "outputPath": "D:\\Midterm2020\\Midterm2020\\Midterm2020\\Midterm2020\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Microsoft\\Xamarin\\NuGet\\"
-      ],
       "configFilePaths": [
-        "C:\\Users\\broly\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        "C:\\Users\\darsh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
@@ -63,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

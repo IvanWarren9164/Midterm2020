@@ -24,3 +24,16 @@ C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin
 C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.dll
 C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.pdb
 C:\Users\broly\Documents\School\Grand Circus\Midterm\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.genruntimeconfig.cache
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.csprojAssemblyReference.cache
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.AssemblyInfoInputs.cache
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.AssemblyInfo.cs
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.csproj.CoreCompileInputs.cache
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.dll
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.pdb
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.exe
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.deps.json
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.runtimeconfig.json
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.runtimeconfig.dev.json
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.dll
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\bin\Debug\netcoreapp3.1\Midterm2020.pdb
+D:\Midterm2020\Midterm2020\Midterm2020\Midterm2020\obj\Debug\netcoreapp3.1\Midterm2020.genruntimeconfig.cache
