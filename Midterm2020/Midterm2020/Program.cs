@@ -9,7 +9,7 @@ namespace Midterm2020
         static void Main(string[] args)
         {
             var testListOfBooks = new List<Book>();
-            testListOfBooks.Add(new Book("Visible Man", "Eli Ralphson", DateTime.Now, Status.CheckedOut));
+            testListOfBooks.Add(new Book("Visible Man", "Eli Ralphson", DateTime.Now, Status.OnShelf));
             /*testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
             testListOfBooks.Add(new Book("Sisterhood of the traveling pants", "Joe Schmo"));
             testListOfBooks.Add(new Book("To Kill A Mockingbird", "Harper Lee"));
@@ -22,6 +22,15 @@ namespace Midterm2020
             Library.DisplayAllBooks(testListOfBooks);
 
             Library.CheckOutBook(testListOfBooks, testListOfBooks[0]);
+
+
+
+
+            //code that reads from file
+            var listbook = new List<Book>();
+
+            
+
         }
     }
 
