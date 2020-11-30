@@ -12,19 +12,29 @@ namespace Midterm2020
     
 
             var testListOfBooks = new List<Book>();
-            testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling"));
-            testListOfBooks.Add(new Book("Sisterhood of the traveling pants", "Joe Schmo"));
-            testListOfBooks.Add(new Book("To Kill A Mockingbird", "Harper Lee"));
-            testListOfBooks.Add(new Book("The Great Gatsby", "F Scott Fitzgerald"));
-            testListOfBooks.Add(new Book("A Passage to India", "EM Foster"));
-            testListOfBooks.Add(new Book("Invisible Man", "Ralph Ellison"));
-            testListOfBooks.Add(new Book("Visible Man", "Eli Ralphson"));
-            testListOfBooks.Add(new Book("Beloved", "Toni Morrison"));
-            testListOfBooks.Add(new Book("Deloved", "Toni Morrison"));
+            testListOfBooks.Add(new Book("Harry Potter and the chamber of secrets", "JK Rowling", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("Sisterhood of the traveling pants", "Joe Schmo", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("To Kill A Mockingbird", "Harper Lee", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("The Great Gatsby", "F Scott Fitzgerald", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("A Passage to India", "EM Foster", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("Invisible Man", "Ralph Ellison", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("Visible Man", "Eli Ralphson", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("Beloved", "Toni Morrison", Status.OnShelf, DateTime.MinValue));
+            testListOfBooks.Add(new Book("Deloved", "Toni Morrison", Status.OnShelf, DateTime.MinValue));
 
             // Library.DisplayAllBooks(testListOfBooks);
+            var data = new List<Book>();
+            if (File.Exists(Global.path))
+            {
+                string[] readText = File.ReadAllLines(Global.path);
+                
 
-           
+                for (int i = 0; i < File.ReadAllLines(Global.path).Length; i += 4)
+                {
+                    data.Add(new Book(readText[i], readText[i + 1], readText[i + 2], DateTime.Parse(readText[i + 3])));
+                }
+            }
+
 
             Library.CreateList(testListOfBooks);
             Book.ReadLibrary();
@@ -53,8 +63,8 @@ namespace Midterm2020
                     int select1 = Convert.ToInt32(Console.ReadLine());
                     if (select1 == 1)
                     {
-                        Library.CheckOutBook1(testListOfBooks, autherOfTheBook);
-                        Library.CreateList(testListOfBooks);
+                        Library.CheckOutBook1(data, autherOfTheBook);
+                        Library.Savedata(data);
                         Book.ReadLibrary();
                         break;
                     }
@@ -235,6 +245,8 @@ namespace Midterm2020
 
         public static void ReturnBook(List<Book> listOfBooks, string bookToBeReturned)
         {
+
+
             foreach (Book book in listOfBooks)
             {
                 if (book.Title.Equals(bookToBeReturned, StringComparison.OrdinalIgnoreCase))
@@ -267,10 +279,12 @@ namespace Midterm2020
 
             }
         }*/
-        public static void CheckOutBook1(List<Book> listOfBooks, string bookToBeCheckedOut)
+        public static void CheckOutBook1(List<Book> data, string bookToBeCheckedOut)
         {
             
-            foreach (Book book in listOfBooks)
+
+
+            foreach (Book book in data)
             {
                 if (book.Title.Equals(bookToBeCheckedOut, StringComparison.OrdinalIgnoreCase) )
                 {
@@ -327,42 +341,71 @@ namespace Midterm2020
 
 
         }
+      
+
 
         public static void CreateList(List<Book> testListOfBooks)
         {
             var listOfTitle = new List<string>();
-            for (int i = 0; i < testListOfBooks.Count; i++)
-            {
-                listOfTitle.Add(testListOfBooks[i].Title);
-                listOfTitle.Add(testListOfBooks[i].Author);
-                listOfTitle.Add(testListOfBooks[i].Status.ToString());
-                listOfTitle.Add(testListOfBooks[i].DueDate.ToString());
+           
 
+            if (!File.Exists(Global.path))
+            {
+                for (int i = 0; i < testListOfBooks.Count; i++)
+                {
+                    listOfTitle.Add(testListOfBooks[i].Title);
+                    listOfTitle.Add(testListOfBooks[i].Author);
+                    listOfTitle.Add(testListOfBooks[i].Status.ToString());
+                    listOfTitle.Add(testListOfBooks[i].DueDate.ToString());
+                }
+                File.WriteAllLines(Global.path, listOfTitle);
             }
             
-            if (!File.Exists(Global.path))
-                File.WriteAllLines(Global.path, listOfTitle);
-          
-            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
+
+            
+           // depends on how our streamwriter / reader works. We want to create new books based on this txt file
+        }
+        public static void Savedata(List<Book> data)
+        {
+
+            var savedata = new List<string>();
+
+            for (int i = 0; i < data.Count; i++)
+            {
+                savedata.Add(data[i].Title);
+                savedata.Add(data[i].Author);
+                savedata.Add(data[i].Status.ToString());
+                savedata.Add(data[i].DueDate.ToString());
+            }
+            File.WriteAllLines(Global.path, savedata);
+
         }
 
-       
+
     }
-    public class Book 
+    public class Book
     {
-        public Book(string title, string author)
+        public Book(string title, string author, Status status, DateTime time)
         {
             Title = title;
             Author = author;
-            Status = Status.OnShelf;
-            DueDate = DateTime.MinValue;
+            Status = status;
+            DueDate = time;
         }
-        public Book(string title, string author, DateTime dueDate)
+        public Book(string title, string author, string status, DateTime dueDate)
         {
             Title = title;
-            Author = author;
-            Status = Status.CheckedOut;
+            Author = author;            
             DueDate = dueDate;
+
+            if (Status.CheckedOut.ToString().Equals(status))
+            {
+                Status = Status.CheckedOut;
+            }
+            else if (Status.OnShelf.ToString().Equals(status))
+            {
+                Status = Status.OnShelf;
+            }
         }
         public string Title { get; set; }
         public string Author { get; set; }

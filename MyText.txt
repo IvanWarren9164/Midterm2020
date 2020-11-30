@@ -1,11 +1,11 @@
 Harry Potter and the chamber of secrets
 JK Rowling
-OnShelf
-1/1/0001 12:00:00 AM
+CheckedOut
+12/14/2020 6:21:11 PM
 Sisterhood of the traveling pants
 Joe Schmo
-OnShelf
-1/1/0001 12:00:00 AM
+CheckedOut
+12/14/2020 5:29:19 PM
 To Kill A Mockingbird
 Harper Lee
 OnShelf
