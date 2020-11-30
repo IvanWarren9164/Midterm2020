@@ -46,7 +46,7 @@ namespace Midterm2020
             }
             else if (selection == 2)
             {
-                Console.WriteLine("Not Finished Yet!");
+                Library.SearchForBook(listOfBooks);
                 return listOfBooks;
             }
             else if (selection == 3)
@@ -104,7 +104,22 @@ namespace Midterm2020
                 Console.WriteLine($"Title: {book.Title}");
                 Console.WriteLine($"Author: {book.Author}");
                 DynamicDueDate(book);
-                Console.WriteLine("\n\n");
+                Console.WriteLine("\n");
+            }
+        }
+        public static void SearchForBook(List<Book> listOfBooks)
+        {
+            Console.WriteLine("Please enter a title or author to search by:");
+            var searchCriteria = Console.ReadLine().Trim();
+            foreach (Book book in listOfBooks)
+            {
+                if (book.Title.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase) || book.Author.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase))
+                {
+                    Console.WriteLine($"Title: {book.Title}");
+                    Console.WriteLine($"Author: {book.Author}");
+                    DynamicDueDate(book);
+                    Console.WriteLine("\n");
+                }
             }
         }
         public static void DynamicDueDate(Book book)
