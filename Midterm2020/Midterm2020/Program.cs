@@ -16,6 +16,7 @@ namespace Midterm2020
                 RunAction(userSelection, appStartList);
                 userContinue = ShouldContinue();
             }
+            Library.UpdateLibary(appStartList);
         }
 
         public static uint PromptForAction()
@@ -161,7 +162,7 @@ namespace Midterm2020
         public static List<Book> BuildLibraryFromText()
         {
             var myLibary = new List<Book>();
-            string[] myData = File.ReadAllLines("../../../libary.txt");
+            string[] myData = File.ReadAllLines(Global.libaryPath);
             for (int i = 0; i < myData.Length; i = i + 4)
             {
                 var bookTitle = myData[i];
@@ -194,6 +195,29 @@ namespace Midterm2020
             {
                 return DateTime.Today.AddDays(2);
             }
+        }
+        public static void UpdateLibary(List<Book> listOfBooks)
+        {
+            var sw = new StreamWriter(Global.libaryPath, false);
+            using (sw)
+            {
+                foreach (Book book in listOfBooks)
+                {
+                    sw.WriteLine(book.Title);
+                    sw.WriteLine(book.Author);
+                    sw.WriteLine(book.Status.ToString());
+                    sw.WriteLine(book.DueDate.ToString());
+                }
+            }
+            sw.Close();
+            var realData = File.ReadAllText(Global.libaryPath).Trim();
+            var dw = new StreamWriter(Global.libaryPath);
+            using (dw)
+            {
+                dw.Write(realData);
+            }
+            dw.Close();
+
         }
     }
     public class Book
@@ -240,6 +264,7 @@ namespace Midterm2020
     public static class Global // Create a path variable.
     {
         public static string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\library.txt");
+        public static string libaryPath = "../../../libary.txt";
 
     }
 }
