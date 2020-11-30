@@ -17,6 +17,14 @@ namespace Midterm2020
                 userContinue = ShouldContinue();
             }
             Library.UpdateLibary(appStartList);
+
+
+            //List<Book> testList = Library.BuildLibraryFromText();
+
+            //foreach (Book book in testList)
+            //{
+            //    Console.WriteLine(book.Title + " " + book.Author + " " + book.Status + " " + book.DueDate + "\n");
+            //}
         }
 
         public static uint PromptForAction()
@@ -158,9 +166,11 @@ namespace Midterm2020
             {
                 if (book.Title.Equals(searchItem, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine($"Great! Checking out {book.Title} by {book.Author}");
                     book.Status = Status.CheckedOut;
                     book.DueDate = DateTime.Now.AddDays(14);
+                    Console.WriteLine($"Great! Checking out {book.Title} by {book.Author} \n" +
+                        $"It will be due: " + book.DueDate);
+
                 }
             }
             return listOfBooks;
@@ -241,14 +251,11 @@ namespace Midterm2020
         {
             Title = title;
             Author = author;
-            Status = Status.OnShelf;
-            DueDate = DateTime.MinValue;
         }
         public Book(string title, string author, DateTime dueDate)
         {
             Title = title;
             Author = author;
-            Status = Status.CheckedOut;
             DueDate = dueDate;
         }
         public Book(string title, string author, Status status, DateTime dueDate)
