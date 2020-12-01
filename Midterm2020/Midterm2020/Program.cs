@@ -244,6 +244,88 @@ namespace Midterm2020
             dw.Close();
 
         }
+        public static void SearchAuther(string name)
+        {
+            int num = 1;
+            char space = ' ';
+            string[] readText = File.ReadAllLines(Global.path);
+            Console.WriteLine("\n\n");
+            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
+            Console.WriteLine("=====================================================================================================================================================================");
+
+            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i++)
+            {
+                i++;
+                if (readText[i].Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    string line1 = "";
+                    for (int j = i - 1; j < i + 3; j++)
+                    {
+                        line1 = line1 + readText[j].PadRight(45, space) + " ";
+                    }
+                    Console.WriteLine($"{num}.  {line1} ");
+                    num++;
+
+                }
+
+
+
+            }
+            Console.WriteLine("\n\n");
+
+        }
+        public static void Searchtitle(string name)
+        {
+            int num = 1;
+            char space = ' ';
+            string[] readText = File.ReadAllLines(Global.path);
+            Console.WriteLine("\n\n");
+            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
+            Console.WriteLine("=====================================================================================================================================================================");
+
+            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i++)
+            {
+                if (readText[i].Equals(name, StringComparison.OrdinalIgnoreCase))
+                {
+                    string line1 = "";
+                    for (int j = i; j < i + 4; j++)
+                    {
+                        line1 = line1 + readText[j].PadRight(45, space) + " ";
+                    }
+                    Console.WriteLine($"{num}.  {line1} ");
+                    num++;
+
+                }
+
+            }
+            Console.WriteLine("\n\n");
+        }
+        public static void ReadLibrary()
+        {
+            int num = 1;
+            char space = ' ';
+            string[] readText = File.ReadAllLines(Global.path);
+            Console.WriteLine("\n\n");
+            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
+            Console.WriteLine("=====================================================================================================================================================================");
+
+            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i = i + 4)
+            {
+                string line1 = "";
+                for (int j = i; j < i + 4; j++)
+                {
+                    line1 = line1 + readText[j].PadRight(45, space) + " ";
+                }
+                Console.WriteLine($"{num}.  {line1} ");
+                num++;
+            }
+            Console.WriteLine("\n\n");
+
+
+
+            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
+        }
+
     }
     public class Book
     {
