@@ -41,7 +41,7 @@ namespace Midterm2020
         {
             if (selection == 1)
             {
-                Library.DisplayAllBooks(listOfBooks);
+                Library.ReadLibrary();
                 return listOfBooks;
             }
             else if (selection == 2)
@@ -97,31 +97,45 @@ namespace Midterm2020
 
     public abstract class Library
     {
-        public static void DisplayAllBooks(List<Book> listOfBooks)
-        {
-            foreach (Book book in listOfBooks)
-            {
-                Console.WriteLine($"Title: {book.Title}");
-                Console.WriteLine($"Author: {book.Author}");
-                DynamicDueDate(book);
-                Console.WriteLine("\n");
-            }
-        }
+
         public static void SearchForBook(List<Book> listOfBooks)
         {
+
+            int num = 1;
+            char space = ' ';
+            int count = 1;
+            string[] readText = File.ReadAllLines(Global.libaryPath);
+
+
             Console.WriteLine("Please enter a title or author to search by:");
             var searchCriteria = Console.ReadLine().Trim();
+            Console.WriteLine("\n\n");
+            Console.WriteLine("No.| Title 				          Author Name		                     	Status 		                                    Due Date");
+            Console.WriteLine("=====================================================================================================================================================================");
+
             foreach (Book book in listOfBooks)
             {
-                if (book.Title.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase) || book.Author.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase))
+                if (book.Title.Equals(searchCriteria, StringComparison.OrdinalIgnoreCase) || book.Author.Equals(searchCriteria, StringComparison.OrdinalIgnoreCase))
                 {
-                    Console.WriteLine($"Title: {book.Title}");
-                    Console.WriteLine($"Author: {book.Author}");
-                    DynamicDueDate(book);
-                    Console.WriteLine("\n");
+
+                    Console.WriteLine($"{num.ToString().PadRight(3, space)}| {book.Title.PadRight(45, space)}{book.Author.PadRight(45, space)}{book.Status.ToString().PadRight(45, space)}{book.DueDate.ToString().PadRight(45, space)}");
+                    count++;
+                    break;
+                }
+                if (!book.Title.Equals(searchCriteria, StringComparison.OrdinalIgnoreCase) || !book.Author.Equals(searchCriteria, StringComparison.OrdinalIgnoreCase))
+                {
+
+                    count++;
+                }
+                if (count.Equals(12))
+                {
+                    Console.WriteLine("Wrong Input! Please input right Keywords");
                 }
             }
+            Console.WriteLine("\n\n");
         }
+
+
         public static void DynamicDueDate(Book book)
         {
             if (book.Status == Status.CheckedOut)
@@ -135,6 +149,7 @@ namespace Midterm2020
                 Console.WriteLine("No Due Date");
             }
         }
+
         public static List<Book> ReturnBook(List<Book> listOfBooks)
         {
             Console.WriteLine("Please enter the title of the book you are returning:");
@@ -234,79 +249,25 @@ namespace Midterm2020
             dw.Close();
 
         }
-        public static void SearchAuther(string name)
-        {
-            int num = 1;
-            char space = ' ';
-            string[] readText = File.ReadAllLines(Global.path);
-            Console.WriteLine("\n\n");
-            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
-            Console.WriteLine("=====================================================================================================================================================================");
-
-            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i++)
-            {
-                i++;
-                if (readText[i].Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    string line1 = "";
-                    for (int j = i - 1; j < i + 3; j++)
-                    {
-                        line1 = line1 + readText[j].PadRight(45, space) + " ";
-                    }
-                    Console.WriteLine($"{num}.  {line1} ");
-                    num++;
-
-                }
 
 
-
-            }
-            Console.WriteLine("\n\n");
-
-        }
-        public static void Searchtitle(string name)
-        {
-            int num = 1;
-            char space = ' ';
-            string[] readText = File.ReadAllLines(Global.path);
-            Console.WriteLine("\n\n");
-            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
-            Console.WriteLine("=====================================================================================================================================================================");
-
-            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i++)
-            {
-                if (readText[i].Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    string line1 = "";
-                    for (int j = i; j < i + 4; j++)
-                    {
-                        line1 = line1 + readText[j].PadRight(45, space) + " ";
-                    }
-                    Console.WriteLine($"{num}.  {line1} ");
-                    num++;
-
-                }
-
-            }
-            Console.WriteLine("\n\n");
-        }
         public static void ReadLibrary()
         {
             int num = 1;
             char space = ' ';
-            string[] readText = File.ReadAllLines(Global.path);
+            string[] readText = File.ReadAllLines(Global.libaryPath);
             Console.WriteLine("\n\n");
             Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
             Console.WriteLine("=====================================================================================================================================================================");
 
-            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i = i + 4)
+            for (int i = 0; i < File.ReadAllLines(Global.libaryPath).Length; i = i + 4)
             {
                 string line1 = "";
                 for (int j = i; j < i + 4; j++)
                 {
                     line1 = line1 + readText[j].PadRight(45, space) + " ";
                 }
-                Console.WriteLine($"{num}.  {line1} ");
+                Console.WriteLine($"{num.ToString().PadRight(3, space)}|{line1} ");
                 num++;
             }
             Console.WriteLine("\n\n");
@@ -346,21 +307,11 @@ namespace Midterm2020
         public DateTime DueDate { get; set; }
 
 
-        public static void CreateLibrary()
-        {
-            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");  // Create a path variable.
 
-            string[] readText = File.ReadAllLines(path);
-            foreach (string s in readText)
-            {
-                Console.WriteLine(s);
-            }
-            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
-        }
     }
     public static class Global // Create a path variable.
     {
-        public static string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\library.txt");
+        public static string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\Midterm2020\Midterm2020\library.txt");
         public static string libaryPath = "../../../libary.txt";
 
     }
