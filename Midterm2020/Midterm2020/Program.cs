@@ -41,7 +41,7 @@ namespace Midterm2020
         {
             if (selection == 1)
             {
-                Library.DisplayAllBooks(listOfBooks);
+                Library.ReadLibrary();
                 return listOfBooks;
             }
             else if (selection == 2)
@@ -51,12 +51,12 @@ namespace Midterm2020
             }
             else if (selection == 3)
             {
-                Library.CheckOutBook(listOfBooks);
+                Library.CheckOutReturn(listOfBooks, true);
                 return listOfBooks;
             }
             else if (selection == 4)
             {
-                Library.ReturnBook(listOfBooks);
+                Library.CheckOutReturn(listOfBooks, true);
                 return listOfBooks;
             }
             else
@@ -88,279 +88,9 @@ namespace Midterm2020
             }
         }
     }
-
-    public enum Status
-    {
-        OnShelf = 0,
-        CheckedOut = 1
-    }
-
-    public abstract class Library
-    {
-        public static void DisplayAllBooks(List<Book> listOfBooks)
-        {
-            foreach (Book book in listOfBooks)
-            {
-                Console.WriteLine($"Title: {book.Title}");
-                Console.WriteLine($"Author: {book.Author}");
-                DynamicDueDate(book);
-                Console.WriteLine("\n");
-            }
-        }
-        public static void SearchForBook(List<Book> listOfBooks)
-        {
-            Console.WriteLine("Please enter a title or author to search by:");
-            var searchCriteria = Console.ReadLine().Trim();
-            foreach (Book book in listOfBooks)
-            {
-                if (book.Title.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase) || book.Author.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine($"Title: {book.Title}");
-                    Console.WriteLine($"Author: {book.Author}");
-                    DynamicDueDate(book);
-                    Console.WriteLine("\n");
-                }
-            }
-        }
-        public static void DynamicDueDate(Book book)
-        {
-            if (book.Status == Status.CheckedOut)
-            {
-                Console.WriteLine("Status: Checked Out");
-                Console.WriteLine($"Due Date: {book.DueDate}");
-            }
-            else
-            {
-                Console.WriteLine("Status: Available");
-                Console.WriteLine("No Due Date");
-            }
-        }
-        public static List<Book> ReturnBook(List<Book> listOfBooks)
-        {
-            Console.WriteLine("Please enter the title of the book you are returning:");
-            var returnedTitle = Console.ReadLine();
-            foreach (Book book in listOfBooks)
-            {
-                if (book.Title.Equals(returnedTitle, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine($"Great! Thank you! Returning {book.Title} by {book.Author}");
-                    book.Status = Status.OnShelf;
-                    book.DueDate = DateTime.MinValue;
-                }
-            }
-            return listOfBooks;
-        }
-        public static List<Book> CheckOutBook(List<Book> listOfBooks)
-        {
-            Console.WriteLine("Please Enter the title book you\'d like to check out");
-            var searchItem = Console.ReadLine();
-            foreach (Book book in listOfBooks)
-            {
-                if (book.Title.Equals(searchItem, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine($"Great! Checking out {book.Title} by {book.Author}");
-                    book.Status = Status.CheckedOut;
-                    book.DueDate = DateTime.Now.AddDays(14);
-                }
-            }
-            return listOfBooks;
-        }
-        public static Book CreateBook()
-        {
-            Console.WriteLine("Please Enter a Title:");
-            string userTitle = Console.ReadLine();
-            Console.WriteLine("Please Enter an Author:");
-            string userAuthor = Console.ReadLine();
-            Console.WriteLine($"{userTitle} by {userAuthor}, Got It!");
-            return new Book(userTitle, userAuthor);
-        }
-        public static List<Book> BuildLibraryFromText()
-        {
-            var myLibary = new List<Book>();
-            string[] myData = File.ReadAllLines(Global.libaryPath);
-            for (int i = 0; i < myData.Length; i = i + 4)
-            {
-                var bookTitle = myData[i];
-                var bookAuthor = myData[i + 1];
-                Status bookStatus = SetStatus(myData[i + 2]);
-                DateTime bookDueDate = SetDueDate(myData[i + 3]);
-                myLibary.Add(new Book(bookTitle, bookAuthor, bookStatus, bookDueDate));
-            }
-
-            return myLibary;
-        }
-        public static Status SetStatus(string status)
-        {
-            if (status.Equals("OnShelf", StringComparison.OrdinalIgnoreCase))
-            {
-                return Status.OnShelf;
-            }
-            else
-            {
-                return Status.CheckedOut;
-            }
-        }
-        public static DateTime SetDueDate(string dueDate)
-        {
-            if (DateTime.TryParse(dueDate, out DateTime result))
-            {
-                return result;
-            }
-            else
-            {
-                return DateTime.Today.AddDays(2);
-            }
-        }
-        public static void UpdateLibary(List<Book> listOfBooks)
-        {
-            var sw = new StreamWriter(Global.libaryPath, false);
-            using (sw)
-            {
-                foreach (Book book in listOfBooks)
-                {
-                    sw.WriteLine(book.Title);
-                    sw.WriteLine(book.Author);
-                    sw.WriteLine(book.Status.ToString());
-                    sw.WriteLine(book.DueDate.ToString());
-                }
-            }
-            sw.Close();
-            var realData = File.ReadAllText(Global.libaryPath).Trim();
-            var dw = new StreamWriter(Global.libaryPath);
-            using (dw)
-            {
-                dw.Write(realData);
-            }
-            dw.Close();
-
-        }
-        public static void SearchAuther(string name)
-        {
-            int num = 1;
-            char space = ' ';
-            string[] readText = File.ReadAllLines(Global.path);
-            Console.WriteLine("\n\n");
-            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
-            Console.WriteLine("=====================================================================================================================================================================");
-
-            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i++)
-            {
-                i++;
-                if (readText[i].Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    string line1 = "";
-                    for (int j = i - 1; j < i + 3; j++)
-                    {
-                        line1 = line1 + readText[j].PadRight(45, space) + " ";
-                    }
-                    Console.WriteLine($"{num}.  {line1} ");
-                    num++;
-
-                }
-
-
-
-            }
-            Console.WriteLine("\n\n");
-
-        }
-        public static void Searchtitle(string name)
-        {
-            int num = 1;
-            char space = ' ';
-            string[] readText = File.ReadAllLines(Global.path);
-            Console.WriteLine("\n\n");
-            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
-            Console.WriteLine("=====================================================================================================================================================================");
-
-            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i++)
-            {
-                if (readText[i].Equals(name, StringComparison.OrdinalIgnoreCase))
-                {
-                    string line1 = "";
-                    for (int j = i; j < i + 4; j++)
-                    {
-                        line1 = line1 + readText[j].PadRight(45, space) + " ";
-                    }
-                    Console.WriteLine($"{num}.  {line1} ");
-                    num++;
-
-                }
-
-            }
-            Console.WriteLine("\n\n");
-        }
-        public static void ReadLibrary()
-        {
-            int num = 1;
-            char space = ' ';
-            string[] readText = File.ReadAllLines(Global.path);
-            Console.WriteLine("\n\n");
-            Console.WriteLine("No. Title 				          Author Name		                     	Status 		                                    Due Date");
-            Console.WriteLine("=====================================================================================================================================================================");
-
-            for (int i = 0; i < File.ReadAllLines(Global.path).Length; i = i + 4)
-            {
-                string line1 = "";
-                for (int j = i; j < i + 4; j++)
-                {
-                    line1 = line1 + readText[j].PadRight(45, space) + " ";
-                }
-                Console.WriteLine($"{num}.  {line1} ");
-                num++;
-            }
-            Console.WriteLine("\n\n");
-
-
-
-            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
-        }
-
-    }
-    public class Book
-    {
-        public Book(string title, string author)
-        {
-            Title = title;
-            Author = author;
-            Status = Status.OnShelf;
-            DueDate = DateTime.MinValue;
-        }
-        public Book(string title, string author, DateTime dueDate)
-        {
-            Title = title;
-            Author = author;
-            Status = Status.CheckedOut;
-            DueDate = dueDate;
-        }
-        public Book(string title, string author, Status status, DateTime dueDate)
-        {
-            Title = title;
-            Author = author;
-            Status = status;
-            DueDate = dueDate;
-        }
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public Status Status { get; set; }
-        public DateTime DueDate { get; set; }
-
-
-        public static void CreateLibrary()
-        {
-            string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\MyText.txt");  // Create a path variable.
-
-            string[] readText = File.ReadAllLines(path);
-            foreach (string s in readText)
-            {
-                Console.WriteLine(s);
-            }
-            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
-        }
-    }
     public static class Global // Create a path variable.
     {
-        public static string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\library.txt");
+        public static string path = Path.Combine(Environment.CurrentDirectory, @"\Midterm2020\Midterm2020\libary.txt");
         public static string libaryPath = "../../../libary.txt";
 
     }

@@ -5,7 +5,7 @@ OnShelf
 It
 Stephen King
 CheckedOut
-12/1/2020 12:00:00 AM
+12/14/2020 3:16:56 PM
 The Shining
 Stephen King
 OnShelf
