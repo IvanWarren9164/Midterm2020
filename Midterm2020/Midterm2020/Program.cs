@@ -21,7 +21,7 @@ namespace Midterm2020
 
         public static uint PromptForAction()
         {
-            Console.Clear();
+            //Console.Clear();
             while (true)
             {
                 Console.WriteLine("Would you like to:");
@@ -41,7 +41,7 @@ namespace Midterm2020
         {
             if (selection == 1)
             {
-                Library.ReadLibrary();
+                Library.ReadLibrary(listOfBooks);
                 return listOfBooks;
             }
             else if (selection == 2)
@@ -56,7 +56,7 @@ namespace Midterm2020
             }
             else if (selection == 4)
             {
-                Library.CheckOutReturn(listOfBooks, true);
+                Library.CheckOutReturn(listOfBooks, false);
                 return listOfBooks;
             }
             else
