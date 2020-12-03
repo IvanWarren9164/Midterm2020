@@ -165,10 +165,37 @@ namespace Midterm2020
         }
         public static Book CreateBook()
         {
-            Console.WriteLine("Please Enter a Title:");
-            string userTitle = Console.ReadLine();
-            Console.WriteLine("Please Enter an Author:");
-            string userAuthor = Console.ReadLine();
+            string userTitle;
+            string userAuthor;
+            while (true)
+            {
+                Console.WriteLine("Please Enter a Title:");
+                userTitle = Console.ReadLine();
+                if(EmptyStringCheck(userTitle) != true)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Error you must enter in something!");
+                }
+                
+            }
+
+            while (true)
+            {
+                Console.WriteLine("Please Enter an Author :");
+                userAuthor = Console.ReadLine();
+                if (EmptyStringCheck(userAuthor) != true)
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Error you must enter in something!");
+                }
+
+            }
             Console.WriteLine($"{userTitle} by {userAuthor}, Got It!");
             return new Book(userTitle, userAuthor);
         }
@@ -237,6 +264,19 @@ namespace Midterm2020
             Console.WriteLine("\n\n" +
             "No.Title                                          Author Name                                   Status                                        Due Date \n" +
              "===================================================================================================================================================================== \n");
+        }
+       
+        public static bool EmptyStringCheck(string userInput)
+        {
+            if(userInput.Trim().Length < 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }
