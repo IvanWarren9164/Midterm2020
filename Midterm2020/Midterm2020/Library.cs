@@ -6,24 +6,19 @@ namespace Midterm2020
 {
     public abstract class Library
     {
-        public static void ReadLibrary()
+        public static void ReadLibrary(List<Book>listOfBooks)
         {
             int num = 1;
             char space = ' ';
-            string[] readText = File.ReadAllLines(Global.libaryPath);
-            printGUIFormat();
-            for (int i = 0; i < File.ReadAllLines(Global.libaryPath).Length; i = i + 4)
+            PrintGUIFormat();
+            foreach(Book book in listOfBooks)
             {
-                string line1 = "";
-                for (int j = i; j < i + 4; j++)
-                {
-                    line1 = line1 + readText[j].PadRight(45, space) + " ";
-                }
-                Console.WriteLine($"{num.ToString().PadRight(3, space)}|{line1} ");
+                Console.WriteLine($"{num.ToString().PadRight(3, space)}| " +
+                $"{book.Title.PadRight(45, space)}{book.Author.PadRight(45, space)} " +
+                $"{book.Status.ToString().PadRight(45, space)} " +
+                $"{book.DueDate.ToString().PadRight(45, space)}");
                 num++;
             }
-            Console.WriteLine("\n\n");
-            // depends on how our streamwriter / reader works. We want to create new books based on this txt file
         }
         public static void SearchForBook(List<Book> listOfBooks)
         {
@@ -65,7 +60,7 @@ namespace Midterm2020
         {
             int num = 1;
             char space = ' ';
-            printGUIFormat();
+            PrintGUIFormat();
             if(bookOrAuthor == true)
             {
                 foreach (Book book in listOfBooks)
@@ -73,8 +68,8 @@ namespace Midterm2020
                     if (book.Title.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine($"{num.ToString().PadRight(3, space)}| " +
-                        $"{book.Title.PadRight(45, space)}{book.Author.PadRight(45, space)}" +
-                        $"{book.Status.ToString().PadRight(45, space)}" +
+                        $"{book.Title.PadRight(45, space)}{book.Author.PadRight(45, space)} " +
+                        $"{book.Status.ToString().PadRight(45, space)} " +
                         $"{book.DueDate.ToString().PadRight(45, space)}");
                         num++;
                     }
@@ -87,8 +82,8 @@ namespace Midterm2020
                     if (book.Author.Contains(searchCriteria, StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine($"{num.ToString().PadRight(3, space)}| " +
-                        $"{book.Title.PadRight(45, space)}{book.Author.PadRight(45, space)}" +
-                        $"{book.Status.ToString().PadRight(45, space)}" +
+                        $"{book.Title.PadRight(45, space)}{book.Author.PadRight(45, space)} " +
+                        $"{book.Status.ToString().PadRight(45, space)} " +
                         $"{book.DueDate.ToString().PadRight(45, space)}"); 
                         num++;
                     }
@@ -101,19 +96,6 @@ namespace Midterm2020
 
 
         }
-        /*public static void DynamicDueDate(Book book)
-        {
-            if (book.Status == Status.CheckedOut)
-            {
-                Console.WriteLine("Checked Out");
-                Console.WriteLine($"{book.DueDate}");
-            }
-            else
-            {
-                Console.WriteLine("Available");
-                Console.WriteLine("No Due Date");
-            }
-        }*/
         public static List<Book> CheckOutReturn(List<Book> listOfBooks,bool checkoutorreturn)
         {
             if(checkoutorreturn == true)
@@ -250,13 +232,11 @@ namespace Midterm2020
             dw.Close();
 
         }
-        public static void printGUIFormat()
+        public static void PrintGUIFormat()
         {
             Console.WriteLine("\n\n" +
             "No.Title                                          Author Name                                   Status                                        Due Date \n" +
              "===================================================================================================================================================================== \n");
         }
-        
-
     }
 }
