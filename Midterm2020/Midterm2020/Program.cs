@@ -51,12 +51,12 @@ namespace Midterm2020
             }
             else if (selection == 3)
             {
-                Library.CheckOutReturn(listOfBooks, true);
+                Library.CheckOutReturn(listOfBooks, false);
                 return listOfBooks;
             }
             else if (selection == 4)
             {
-                Library.CheckOutReturn(listOfBooks, false);
+                Library.CheckOutReturn(listOfBooks, true);
                 return listOfBooks;
             }
             else
